@@ -1,0 +1,49 @@
+.recipes {
+  width: 100%;
+  min-height: calc(100vh - 150px);
+  padding: 0 120px;
+
+  .recipes-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .dropdown {
+        padding: 10px 12px;
+        border-radius: 5px;
+        border: 1px solid grey;
+        color: rgba(181, 93, 81, 0.97);
+
+        option {
+          padding: 10px 12px;
+        }
+      }
+    }
+  }
+
+  hr {
+    margin: 50px 0;
+  }
+  .r-l-m {
+    margin: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      padding: 12px 24px;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .recipes {
+    padding: 0 32px;
+  }
+  
+}
