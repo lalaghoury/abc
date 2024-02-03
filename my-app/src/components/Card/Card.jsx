@@ -21,7 +21,6 @@ function Card() {
       const response = await axios.get('http://localhost:5000/recipe')
         .then((response) => {
           setCardData(response.data);
-          console.log(response.data);
         })
     } catch (error) {
       console.error(error);
@@ -42,12 +41,12 @@ function Card() {
 
   return (
     <div className="card-wrapper">
-      {cardData.slice(0, 8).map((item, _) =>
+      {cardData.map((item, _) =>
         item.show_on_recipe_page ? (
           <div key={item._id} className="card">
             <div className="card-parent">
               <div className="card-parent-img">
-                <img src={item.image} alt={item.name} className="card-image" />
+                <img src={item.image ? item.image : item.recipe_imageurl} alt={item.name? item.name : item.recipe_title} className="card-image" />
               </div>
               <WishlistButton />
               <div className="card-rating">
@@ -61,11 +60,11 @@ function Card() {
                 </Flex>
               </div>
             </div>
-            <h3 className="font-16"><Link className="links-fix text-black" to={`/recipe/${item._id}`}>{item.name}</Link> </h3>
-            <div className="card-user" key={item.id}>
+            <h3 className="font-16"><Link className="links-fix text-black" to={`/recipe/${item._id}`}>{item.name? item.name : item.recipe_title}</Link></h3>
+            <div className="card-user" key={item._id}>
               <span className="card-left">
                 <img src={item.userimage} alt="" />
-                <h4>{item.username}</h4>
+                <h4>{item.username? item.username : "Anonymous"}</h4>
               </span>
               <span className="card-right">
                 <FireOutlined style={{ color: "red" }} />

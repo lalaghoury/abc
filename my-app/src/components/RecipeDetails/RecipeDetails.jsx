@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import "./RecipeDetails.scss";
 import RecipeRating from "./RecipeRating";
@@ -19,7 +19,6 @@ function RecipeDetails() {
                 .get(`http://localhost:5000/recipe/${recipe_id}`)
                 .then((response) => {
                     setRecipe(response.data);
-                    console.log(response.data);
                 });
             const allResponse = await axios.get('http://localhost:5000/recipe')
                 .then((response) => {
@@ -132,7 +131,7 @@ function RecipeDetails() {
                                 <span><span>Calories</span> {recipe.recipe_calories} mg</span> <hr />
                                 <span><span>Carbs</span> {recipe.recipe_carbohydrates} mg</span> <hr />
                                 <span><span>Fats </span>{recipe.recipe_fats} mg</span> <hr />
-                                <span><span>Protien </span>{recipe.recipe_protiens} mg</span> <hr />
+                                <span><span>Protien </span>{recipe.recipe_proteins} mg</span> <hr />
                                 <span><span>Fiber</span> {recipe.recipe_fiber} mg</span> <hr />
                                 <span><span>Net Carb </span>{recipe.recipe_net_carbons} mg</span> <hr />
                                 <span><span>Sodium </span>{recipe.recipe_sodium} mg</span> <hr />
@@ -152,9 +151,10 @@ function RecipeDetails() {
                                                 key={item._id}
                                             >
                                                 <center><strong style={{ marginBottom: 5 }}>{item.name}</strong></center>
-                                                <Button className="disable-hover" type="primary" block>
+                                                <a href={`/recipe/${item._id}`} className="links-fix text-black"    > <Button className="disable-hover" type="primary" block >
                                                     View Recipe
-                                                </Button>
+                                                </Button></a>
+
                                             </Card>
                                         ) : null
 

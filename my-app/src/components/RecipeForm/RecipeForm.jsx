@@ -63,7 +63,7 @@ function Test() {
   const onFinish = async (values) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/recipe", values);
+        "http://localhost:5000/recipe", { ...values, recipe_imageurl: imageUrl });
       console.log("Server response:", response.data);
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -111,6 +111,7 @@ function Test() {
             beforeUpload={beforeUpload}
             onChange={handleUpload}
             showUploadList={false}
+            name="recipe_imageurl"
           >
             {uploadButton}
           </Upload>
